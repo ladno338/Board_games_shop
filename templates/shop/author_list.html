@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Authors List
+        <a href="{% url 'shop:author-create' %}" class="btn btn-primary link-to-page">
+          Create
+        </a>
+    </h1>
+
+    {% if author_list %}
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>First name</th>
+        <th>Last name</th>
+      </tr>
+    {% for author in author_list %}
+      <tr>
+        <td>{{ author.id }}</td>
+        <td><a href="{% url "shop:author-detail" pk=author.id %} ">{{ author.username }}</a></td>
+        <td>{{ author.first_name }}</td>
+        <td>{{ author.last_name }}</td>
+      </tr>
+    {% endfor %}
+
+    </table>
+    {% else %}
+      <p>There are no authors in the service.</p>
+    {% endif %}
+{% endblock %}

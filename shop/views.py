@@ -1,0 +1,126 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.views import generic
+
+from shop.forms import BoardGameForm, AuthorCreationForm, AuthorUpdateForm
+from shop.models import Publisher, Author, BoardGame
+
+
+# Create your views here.
+@login_required()
+def index(request):
+    """View function for the home page of the site."""
+
+    # num_drivers = Driver.objects.count()
+    # num_cars = Car.objects.count()
+    # num_manufacturers = Manufacturer.objects.count()
+
+    num_visits = request.session.get("num_visits", 0)
+    request.session["num_visits"] = num_visits + 1
+    context = {
+        "num_visits": num_visits + 1,
+    }
+    # context = {
+    #     "num_drivers": num_drivers,
+    #     "num_cars": num_cars,
+    #     "num_manufacturers": num_manufacturers,
+    #     "num_visits": num_visits + 1,
+    # }
+
+    return render(request, "shop/index.html", context=context)
+
+
+class PublisherListView(LoginRequiredMixin, generic.ListView):
+    model = Publisher
+    context_object_name = "publisher_list"
+    template_name = "shop/publisher_list.html"
+    paginate_by = 5
+
+
+class PublisherCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Publisher
+    fields = "__all__"
+    success_url = reverse_lazy("shop:publisher-list")
+
+
+class PublisherUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Publisher
+    fields = "__all__"
+    success_url = reverse_lazy("shop:publisher-list")
+
+
+class PublisherDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Publisher
+    success_url = reverse_lazy("shop:publisher-list")
+
+
+class AuthorListView(LoginRequiredMixin, generic.ListView):
+    model = Author
+    context_object_name = "author_list"
+    template_name = "shop/author_list.html"
+    paginate_by = 10
+
+
+class AuthorDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Author
+    context_object_name = "author_detail"
+    template_name = "shop/author_detail.html"
+    # queryset = Author.objects.all().prefetch_related("boardgame__publisher")
+
+
+class AuthorCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Author
+    form_class = AuthorCreationForm
+
+
+class AuthorDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Author
+    success_url = reverse_lazy("")
+
+
+class AuthorUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Author
+    form_class = AuthorUpdateForm
+    success_url = reverse_lazy("shop:author-list")
+
+
+class BoardgameListView(LoginRequiredMixin, generic.ListView):
+    model = BoardGame
+    context_object_name = "boardgame_list"
+    template_name = "shop/boardgame_list.html"
+
+
+class BoardgameDetailView(LoginRequiredMixin, generic.DetailView):
+    model = BoardGame
+
+
+class BoardgameCreateView(LoginRequiredMixin, generic.CreateView):
+    model = BoardGame
+    form_class = BoardGameForm
+    success_url = reverse_lazy("shop:boardgame-list")
+
+
+class BoardgameUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = BoardGame
+    form_class = BoardGameForm
+    success_url = reverse_lazy("shop:boardgame-list")
+
+
+class BoardgameDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = BoardGame
+    success_url = reverse_lazy("shop:boardgame-list")
+
+
+@login_required
+def toggle_assign_to_boardgame(request, pk):
+    author = Author.objects.get(id=request.user.id)
+    if (
+        BoardGame.objects.get(id=pk) in author.boardgame.all()
+    ):  # probably could check if car exists
+        author.boardgame.remove(pk)
+    else:
+        author.boardgame.add(pk)
+    return HttpResponseRedirect(reverse_lazy("shop:boardgame-detail", args=[pk]))

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    Publisher List
+    <a href="{% url 'shop:publisher-create' %}" class="btn btn-primary link-to-page">
+      Create
+    </a>
+  </h1>
+
+  {% if publisher_list %}
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Country</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </tr>
+
+      {% for publisher in publisher_list %}
+        <tr>
+          <td>
+              {{ publisher.id }}
+          </td>
+          <td>
+              {{ publisher.name }}
+          </td>
+          <td>
+              {{ publisher.country }}
+          </td>
+          <td>
+              <a href="{% url 'shop:publisher-update' pk=publisher.id %}">
+                Update
+              </a>
+            </td>
+            <td>
+              <a style="color: red"
+                href="{% url 'shop:publisher-delete' pk=publisher.id %}">
+                Delete
+              </a>
+            </td>
+        </tr>
+      {% endfor %}
+    </table>
+
+  {% else %}
+      <p>There are no publisher in the shop.</p>
+  {% endif %}
+{% endblock %}

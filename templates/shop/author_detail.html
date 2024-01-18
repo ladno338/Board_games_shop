@@ -12,7 +12,7 @@
   <div class="ml-3">
     <h4>Board games</h4>
 
-    {% for boardgame in author.boardgame.all %}
+    {% for boardgame in author_detail.boardgame.all %}
         <hr>
         <p><strong>Board game:</strong> {{ boardgame.name }}</p>
         <p><strong>Publisher:</strong> {{ boardgame.publisher.name }}</p>

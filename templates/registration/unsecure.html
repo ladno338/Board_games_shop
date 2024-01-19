@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %} Unsecure page {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="card mt-5">
+        <div class="card-header">Unsecure Page</div>
+        <div class="card-body">
+            <div class="text-center"> 
+                <p>No login required to access this pages</p>
+                <p><a href="{% url 'secure' %}">Go To Secure Page</a>.</p>
+            </div>    
+        </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

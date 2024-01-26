@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    Board game list
+    <a href="{% url 'shop:boardgame-create' %}" class="btn btn-primary link-to-page">
+      Create
+    </a>
+  </h1>
+  {% include "includes/field_of_search.html" %}
+  {% if boardgame_list %}
+    <ul>
+      {% for boardgame in boardgame_list %}
+        <li>
+          <a href="{% url 'shop:boardgame-detail' pk=boardgame.id %}">{{ boardgame.id }}</a>
+          {{ boardgame.name }} ({{ boardgame.publisher.name }})
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>There are no board games in shop</p>
+  {% endif %}
+{% endblock %}

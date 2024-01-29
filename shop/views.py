@@ -158,12 +158,10 @@ class Assign(View):
     @login_required
     def post(request, pk):
         author = Author.objects.get(id=request.user.id)
-        if (
-            BoardGame.objects.get(id=pk) in author.boardgame.all()
-        ):  # probably could check if car exists
-            author.boardgame.remove(pk)
+        if BoardGame.objects.get(id=pk) in author.boardgames.all():
+            author.boardgames.remove(pk)
         else:
-            author.boardgame.add(pk)
+            author.boardgames.add(pk)
         return HttpResponseRedirect(reverse_lazy("shop:boardgame-detail", args=[pk]))
 
 

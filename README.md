@@ -1,4 +1,5 @@
 # In this project you can see a board games shop web-site
+# Describing project
 In the start page you will need to login here
 login: admi
 password: 192837465.blizz
@@ -9,3 +10,6 @@ Home: it is link to home page
 All authors: you will find information about authors on this web-site
 All board games: you will find here informtaion about board games what placed on this web site and you will can become author of any boardgame
 All publisher: you will find information about publisher on this web-site
+# How to run project
+Open it in PyCharm and press "Edit Configurations" and set django server
+

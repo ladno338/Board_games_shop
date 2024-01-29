@@ -156,7 +156,7 @@ class BoardgameDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class Assign(View):
     @login_required
-    def toggle_assign_to_boardgame(request, pk):
+    def post(request, pk):
         author = Author.objects.get(id=request.user.id)
         if (
             BoardGame.objects.get(id=pk) in author.boardgame.all()
@@ -168,6 +168,7 @@ class Assign(View):
 
 
 class Logout(View):
-    def logout_view(request):
+    @staticmethod
+    def post(request):
         logout(request)
         return HttpResponseRedirect(reverse('shop:index'))

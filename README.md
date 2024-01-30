@@ -1,18 +1,29 @@
-# In this project you can see a board games shop web-site
-# Describing project
-In the start page you will need to login here
+# Introduction
+The goal of this project is to provide minimalistic django project template that everyone can use, which just works out of the box and has the basic setup you can expand on.
+Template is written with django 4.1 and python 3.10 in mind.
+![image](https://github.com/ladno338/Board_games_shop/assets/87599383/ecfafdaa-d3bc-4cd1-a8cd-55ad16db85cb)
+## Main features
+..*Separated dev and production settings
+
+..*Example app with custom user model
+
+..*Bootstrap static files included
+
+..*User registration and logging in as demo
+
+..* toggle to assign the author to board game
+# Getting Started
+First clone the repository from Github and switch to the new directory:
+$ git clone git@github.com/USERNAME/{{ project_name }}.git
+$ cd {{ project_name }}
+
+Activate the virtualenv for your project.
+
+Install project dependencies:
+$ python manage.py migrate
+
+You can now run the development server:
+$ python manage.py runserver
+## Login
 login: admi
 password: 192837465.blizz
-After it you will come on home page
-Here you have a side-bar on the left. On this side-bar placed buttons:Logout, Home, All authors, All board games, All publisher
-Logout: you will logout from your account and you will need to login again
-Home: it is link to home page
-All authors: you will find information about authors on this web-site
-All board games: you will find here informtaion about board games what placed on this web site and you will can become author of any boardgame
-All publisher: you will find information about publisher on this web-site
-# How to run project
-Install django version 4.1 "pip install django==4.1" 
-After it install crispy bootstrap "pip install crispy-bootstrap4"
-And last install debugtoolbar "pip install django-debug-toolbar"
-Write in terminal "python manage.py makemigrations" and after it "python manage.py migrate"
-And for you comfort start press "Edit Configurations" and create django server

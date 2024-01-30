@@ -23,9 +23,9 @@ cd {{ project_name }}
 Activate the virtualenv for your project.
 
 Install project dependencies:
-
+'''
 python manage.py migrate
-
+'''
 You can now run the development server:
 
 python manage.py runserver

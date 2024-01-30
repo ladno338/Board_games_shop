@@ -15,11 +15,12 @@ Template is written with django 4.1 and python 3.10 in mind.
 5. toggle to assign the author to board game
 # Getting Started
 First clone the repository from Github and switch to the new directory:
-
+```
 git clone git@github.com/USERNAME/{{ project_name }}.git
-
+```
+```
 cd {{ project_name }}
-
+```
 Activate the virtualenv for your project.
 
 Install project dependencies:
@@ -27,9 +28,10 @@ Install project dependencies:
 python manage.py migrate
 ```
 You can now run the development server:
-
+```
 python manage.py runserver
+```
 ## Login
-login:admi
+login: admi
 
 password: 192837465.blizz

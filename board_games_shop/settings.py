@@ -22,7 +22,7 @@ if os.path.isfile(dotenv_file):
     dotenv.load_dotenv(dotenv_file)
 
 # UPDATE secret key
-SECRET_KEY = os.environ['SECRET_KEY']  # Instead of your actual secret key
+SECRET_KEY = os.environ['DJANGO_SECRET_KEY']  # Instead of your actual secret key
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 
@@ -32,7 +32,7 @@ SECRET_KEY = os.environ['SECRET_KEY']  # Instead of your actual secret key
 # SECURITY WARNING: keep the secret key used in production secret!
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = 'RENDER' not in os.environ
 
 ALLOWED_HOSTS = []
 

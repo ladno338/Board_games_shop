@@ -34,8 +34,8 @@ urlpatterns = [
     path("boardgame/<int:pk>/update/", BoardgameUpdateView.as_view(), name="boardgame-update"),
     path("boardgame/<int:pk>/delete/", BoardgameDeleteView.as_view(), name="boardgame-delete"),
     path("boardgame/<int:pk>/", BoardgameDetailView.as_view(), name="boardgame-detail"),
-    path("cars/<int:pk>/toggle-assign/", Assign.post, name="toggle-boardgame-assign"),
-    path('accounts/logout/', Logout.post, name='logout'),
+    path("cars/<int:pk>/toggle-assign/", Assign.toggle_assign_to_boardgame, name="toggle-boardgame-assign"),
+    path('accounts/logout/', Logout.logout_view, name='logout'),
 ]
 
 app_name = "shop"

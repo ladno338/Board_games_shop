@@ -27,8 +27,8 @@ class Author(AbstractUser):
 
 class BoardGame(models.Model):
     name = models.CharField(max_length=255)
-    publisher = models.ForeignKey(Publisher, on_delete=models.CASCADE, related_name="boardgame")
-    authors = models.ManyToManyField(Author, related_name="boardgames")
+    publisher = models.ForeignKey(Publisher, on_delete=models.CASCADE)
+    authors = models.ManyToManyField(Author, related_name="boardgame")
 
     class Meta:
         ordering = ("name", )

@@ -13,7 +13,7 @@
   </h1>
   <p>Publisher: ({{ boardgame.publisher.name }}, {{ boardgame.publisher.country }})</p>
   <h1>Authors
-      {% if boardgame in user.boardgames.all %}
+      {% if boardgame in user.boardgame.all %}
         <a href="{% url 'shop:toggle-boardgame-assign' pk=boardgame.id %}" class="btn btn-danger link-to-page">
           Delete me from this boardgame
         </a>

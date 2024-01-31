@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 import os
 from pathlib import Path
 
+import dj_database_url
 import dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,7 +23,7 @@ if os.path.isfile(dotenv_file):
     dotenv.load_dotenv(dotenv_file)
 
 # UPDATE secret key
-SECRET_KEY = os.environ['DJANGO_SECRET_KEY']  # Instead of your actual secret key
+SECRET_KEY = os.environ['SECRET_KEY']  # Instead of your actual secret key
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 
@@ -94,6 +95,8 @@ DATABASES = {
     }
 }
 
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES["default"].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

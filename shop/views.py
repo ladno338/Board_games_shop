@@ -100,11 +100,16 @@ class AuthorDetailView(LoginRequiredMixin, generic.DetailView):
 class AuthorCreateView(LoginRequiredMixin, generic.CreateView):
     model = Author
     form_class = AuthorCreationForm
+    success_url = reverse_lazy("shop:author-list")
 
 
 class AuthorDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Author
-    success_url = reverse_lazy("")
+    success_url = reverse_lazy("shop:author-list")
+
+    def confirm(self, request) -> None:
+        if request.method == "POST":
+            print(1)
 
 
 class AuthorUpdateView(LoginRequiredMixin, generic.UpdateView):

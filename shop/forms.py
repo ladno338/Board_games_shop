@@ -29,7 +29,7 @@ class AuthorCreationForm(UserCreationForm):
 class AuthorUpdateForm(forms.ModelForm):
     class Meta:
         model = Author
-        fields = ["username"]
+        fields = ["username", "first_name", "last_name"]
 
 
 class BoardgameSearchForm(forms.Form):

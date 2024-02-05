@@ -35,5 +35,3 @@ python manage.py runserver
 login: admi
 
 password: 192837465.blizz
-
-url on the web-site: https://board-games-shop12345.onrender.com/

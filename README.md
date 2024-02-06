@@ -32,6 +32,6 @@ You can now run the development server:
 python manage.py runserver
 ```
 ## Login
-login: admi
+login: admin
 
 password: 192837465.blizz

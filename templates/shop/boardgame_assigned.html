@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    Car list
+    <a href="{% url 'shop:boardgame-create' %}" class="btn btn-primary link-to-page">
+      Create
+    </a>
+  </h1>
+  {% if car_list %}
+    <ul>
+      {% for boardgame in boardgame_list %}
+        <li>
+          <a href="{% url "shop:boardgame-detail" pk=boardgame.id %} ">{{ boardgame.id }}</a>
+          {{ boardgame.model }} ({{ boardgame.manufacturer.name }})
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>There are no boardgames in shop</p>
+  {% endif %}
+{% endblock %}

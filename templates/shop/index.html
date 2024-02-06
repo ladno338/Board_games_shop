@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Board Games Shop Home</h1>
+  <p>Welcome to Best Shop Ever!</p>
+  <h2>Dynamic content</h2>
+  <p>The Board Games shop has the following record counts:</p>
+  <p>You have visited this page
+      {{ num_visits }} time{{ num_visits|pluralize }}.
+  </p>
+
+{% endblock %}
